@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc Tracker — Calculator with Labeled History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="app-header">
+    <h1 class="app-title">Calc Tracker</h1>
+    <p class="app-subtitle">A calculator that remembers what every number was for</p>
+  </header>
+
+  <main class="workspace">
+
+    <!-- ============ CALCULATOR DEVICE ============ -->
+    <section class="device" aria-label="Calculator">
+      <div class="device__panel">
+
+        <span class="device__label">CALCULATOR</span>
+
+        <div class="screen">
+          <div class="screen__expression" id="expressionDisplay" aria-live="polite">0</div>
+          <div class="screen__result" id="resultDisplay">&nbsp;</div>
+        </div>
+
+        <div class="label-field">
+          <label for="calcLabel" class="label-field__tag">FOR</label>
+          <input
+            type="text"
+            id="calcLabel"
+            class="label-field__input"
+            placeholder="What is this calculation for?"
+            maxlength="60"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="keypad" id="keypad">
+          <button class="key key--fn" data-action="clear">C</button>
+          <button class="key key--fn" data-action="backspace">DEL</button>
+          <button class="key key--fn" data-action="percent">%</button>
+          <button class="key key--op" data-op="/">÷</button>
+
+          <button class="key key--num" data-num="7">7</button>
+          <button class="key key--num" data-num="8">8</button>
+          <button class="key key--num" data-num="9">9</button>
+          <button class="key key--op" data-op="*">×</button>
+
+          <button class="key key--num" data-num="4">4</button>
+          <button class="key key--num" data-num="5">5</button>
+          <button class="key key--num" data-num="6">6</button>
+          <button class="key key--op" data-op="-">−</button>
+
+          <button class="key key--num" data-num="1">1</button>
+          <button class="key key--num" data-num="2">2</button>
+          <button class="key key--num" data-num="3">3</button>
+          <button class="key key--op" data-op="+">+</button>
+
+          <button class="key key--num key--zero" data-num="0">0</button>
+          <button class="key key--num" data-num=".">.</button>
+          <button class="key key--eq" data-action="equals">=</button>
+        </div>
+
+        <p class="device__error" id="errorMsg" role="alert"></p>
+      </div>
+    </section>
+
+    <!-- ============ LEDGER / HISTORY ============ -->
+    <section class="ledger" aria-label="Calculation history">
+      <div class="ledger__sheet">
+
+        <div class="ledger__head">
+          <span class="ledger__label">LEDGER</span>
+          <button class="ledger__clear" id="clearHistoryBtn" type="button">Clear history</button>
+        </div>
+
+        <div class="search-row">
+          <input
+            type="search"
+            id="searchInput"
+            class="search-row__input"
+            placeholder="Search by label or expression…"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="ledger__list" id="historyList">
+          <!-- history items injected here -->
+        </div>
+
+        <p class="ledger__empty" id="emptyState" hidden>No calculations yet — solve something and give it a label.</p>
+        <p class="ledger__empty" id="noResultsState" hidden>No entries match your search.</p>
+
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
